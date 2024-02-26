@@ -8,6 +8,7 @@
 import logging
 import hmac
 import hashlib
+import pyautogui
 import uuid
 import json
 import re
@@ -494,6 +495,9 @@ class Client(AccountsEndpointsMixin, DiscoverEndpointsMixin, FeedEndpointsMixin,
         :return:
         """
         url = '{0}{1}'.format(self.api_url.format(version=version), endpoint)
+        time.sleep(random.randint(10,15)) # to create a pause between api calls
+        pyautogui.move(0, 10) # to avoid hibernation
+        pyautogui.move(0, -10)
         if query:
             url += ('?' if '?' not in endpoint else '&') + compat_urllib_parse.urlencode(query)
 
